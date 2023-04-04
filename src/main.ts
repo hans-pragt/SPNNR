@@ -8,11 +8,11 @@ import { createPinia } from 'pinia';
 
 /* SPNNR */
 import App from './App.vue';
+import MaterialDesign from './plugins/material-design';
 
 // #endregion Imports
 
-const app = createApp(App);
-
-app
+createApp(App)
   .use(createPinia())
+  .use(MaterialDesign)
   .mount('#app');
