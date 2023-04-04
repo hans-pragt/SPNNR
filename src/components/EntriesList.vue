@@ -5,7 +5,9 @@
     <v-text-field
       label     = "entry"
       variant   = "outlined"
-      @keydown.enter = "onAddEntry();"
+
+      v-model        = "newEntry"
+      @keydown.enter = "insertNewEntry();"
     >
     </v-text-field>
 
@@ -14,11 +16,20 @@
 
 <script setup lang="ts">
 
+// #region Imports
+
+/* SPNNR */
+import { useEntriesStore } from '@/stores/entries.store';
+
+/* Pinia */
+import { storeToRefs } from 'pinia';
+
+// #endregion Imports
+
 // #region New Entry
 
-function onAddEntry() {
-  console.log('test');
-}
+const { newEntry } = storeToRefs(useEntriesStore())
+const { insertNewEntry } = useEntriesStore();
 
 // #endregion New Entry
 
