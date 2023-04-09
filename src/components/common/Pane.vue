@@ -5,7 +5,7 @@
 
     <!-- Header -->
     <div
-      class     = "header"
+      class     = "header text-h6"
     >
       {{ props.title }}
     </div>
