@@ -1,13 +1,13 @@
 <template>
 
   <Pane
-    title       = "Entries"
-    headerColor = "green"
+    title       = "To Do"
+    headerColor = "#03c498"
   >
     
     <!-- Entry Input -->
     <v-text-field
-      label     = "entry"
+      label     = "Todo"
       variant   = "outlined"
 
       v-model        = "newEntry"

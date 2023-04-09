@@ -6,6 +6,7 @@
     <!-- Header -->
     <div
       class     = "header text-h6"
+      :style    = "{ backgroundColor: headerColor }"
     >
       {{ props.title }}
     </div>
@@ -51,7 +52,7 @@ const props = defineProps<PaneProps>();
   .header {
     background-color: #85CBD9;
     border-bottom:    2px solid black;
-    border-radius:    12px 12px 0 0;
+    border-radius:    10px 10px 0 0;
 
     padding:          0px 12px;
   }
