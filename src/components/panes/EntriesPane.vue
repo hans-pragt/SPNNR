@@ -1,21 +1,28 @@
 <template>
 
   <Pane
-    title       = "To Do"
-    headerColor = "#03c498"
+    title   = "To Do"
+    color   = "#03c498"
   >
     
-    <!-- Entry Input -->
-    <v-text-field
-      label     = "Todo"
-      variant   = "outlined"
+    <div class="pa-4">
 
-      v-model        = "newEntry"
-      @keydown.enter = "insertNewEntry();"
-    >
-    </v-text-field>
+      <!-- Entry Input -->
+      <v-text-field
+        variant   = "outlined"
+        hide-details
+
+        v-model        = "newEntry"
+        @keydown.enter = "insertNewEntry();"
+      >
+      </v-text-field>
+
+    </div>
+
+    <div class="divider"></div>
 
     <v-list
+      class     = "entries-list"
       lines     = "one"
       bgColor   = "transparent"
     >
@@ -62,3 +69,21 @@ const { insertNewEntry, removeEntry } = useEntriesStore();
 // #endregion Entries
 
 </script>
+
+<style scoped lang="scss">
+
+.divider {
+  border-bottom: 2px solid black;
+}
+
+.entries-list {
+  min-height:       400px;
+  max-height:       400px;
+  overflow:         auto;
+}
+
+// Override the default style of any scrollbar in the contents of this pane:
+
+
+
+</style>

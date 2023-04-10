@@ -1,12 +1,12 @@
 <template>
   <v-sheet
-    class           = "pane"
+    class      = "pane"
+    :style     = "cssVariables"
   >
 
     <!-- Header -->
     <div
       class     = "header text-h6"
-      :style    = "{ backgroundColor: headerColor }"
     >
       {{ props.title }}
     </div>
@@ -23,16 +23,31 @@
 
 <script setup lang="ts">
 
+// #region Imports
+
+/* Vue */
+import { computed } from 'vue';
+
+// #endregion Imports
+
 // #region Props
 
 interface PaneProps {
   title : string;
-  headerColor : string;
+  color : string;
 }
 
 const props = defineProps<PaneProps>();
 
 // #endregion Props
+
+// #region CSS
+
+const cssVariables = computed(() => ({
+  '--pane-color': props.color
+}));
+
+// #endregion CSS
 
 </script>
 
@@ -48,17 +63,30 @@ const props = defineProps<PaneProps>();
 
   display:            flex;
   flex-direction:     column;
+  overflow: hidden;
 
   .header {
-    background-color: #85CBD9;
+    background-color: var(--pane-color);
     border-bottom:    2px solid black;
-    border-radius:    10px 10px 0 0;
 
     padding:          0px 12px;
   }
   
   .contents {
     flex:       1;
+
+    ::-webkit-scrollbar {
+      border-left:  1px solid black;
+    }
+
+    ::-webkit-scrollbar-track {
+      background:   transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background:   var(--pane-color);
+      border-left:  1px solid black;
+    }
   }
 }
 
