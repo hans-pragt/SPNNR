@@ -4,8 +4,11 @@
       <v-container>
 
         <v-row>
+          <v-col cols="6">
+            <MediaPlayerPane></MediaPlayerPane>
+          </v-col>
           <v-col cols="3">
-            <EntriesPane></EntriesPane>
+            <TodoListPane></TodoListPane>
           </v-col>
         </v-row>
 
@@ -19,7 +22,8 @@
 // #region Imports
 
 /* SPNNR */
-import EntriesPane from './components/panes/EntriesPane.vue';
+import TodoListPane from './components/panes/ToDoListPane.vue';
+import MediaPlayerPane from './components/panes/MediaPlayerPane.vue';
 
 // #endregion Imports
 
