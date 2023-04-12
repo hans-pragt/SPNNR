@@ -4,7 +4,7 @@
       <v-container>
 
         <v-row>
-          <v-col cols="6">
+          <v-col>
             <MediaPlayerPane></MediaPlayerPane>
           </v-col>
           <v-col cols="3">
