@@ -25,7 +25,9 @@ import { ref } from 'vue';
 /* SPNNR */
 import { 
   clear,
-  drawBackground
+  renderLabel,
+  renderVinyl,
+  renderSlices
 } from './utilities/rendering.utilities';
 import type { Entry } from '@/models';
 
@@ -65,7 +67,9 @@ function render() {
   }
 
   clear(context);
-  drawBackground(context, properties.radius);
+  renderVinyl(context, properties.radius);
+  renderSlices(context, properties.radius, properties.entries.map(e => e.contents));
+  renderLabel(context, properties.radius);
 }
 
 // #endregion Rendering

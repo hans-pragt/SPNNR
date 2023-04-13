@@ -27,7 +27,14 @@ export const useEntriesStore = defineStore(
 
     // #region Entries
 
-    const entries : Ref<Array<Entry>> = ref([]);
+    const entries : Ref<Array<Entry>> = ref([
+      // TODO Inserting dev values.
+      generateEntry('House'),
+      generateEntry('Riddim'),
+      generateEntry('Classical'),
+      generateEntry('Disco'),
+      generateEntry('Funk')
+    ]);
 
     function insertNewEntry() {
       entries.value.push({
@@ -57,3 +64,10 @@ export const useEntriesStore = defineStore(
 
   }
 );
+
+function generateEntry(contents : string) : Entry {
+  return {
+    id:       v4(),
+    contents
+  };
+}
