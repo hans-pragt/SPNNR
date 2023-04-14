@@ -59,12 +59,6 @@ export function renderLabel(context : CanvasRenderingContext2D, radius : number)
   }
 
   image.src = 'images/faultlines_label.jpg';
-
-  // Spindle
-  context.beginPath();
-  context.arc(radius, radius, radius * 0.03, 0, 2 * Math.PI);
-  context.fillStyle = SPINDLE_COLOR;
-  context.fill();
 }
 
 /**
