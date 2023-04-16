@@ -10,12 +10,19 @@
       <!-- Record -->
       <Record
         class     = "d-flex justify-center"
-        :radius   = "400"
+        :radius   = "300"
         :entries  = "entries"
+        :current  = "winner"
       >
       </Record>
 
     </div>
+
+    <v-btn
+      @click      = "pickWinner();"
+    >
+      Spin
+    </v-btn>
 
   </Pane>
 
@@ -24,6 +31,9 @@
 <script setup lang="ts">
 
 // #region Imports
+
+/* Vue */
+import { ref } from 'vue';
 
 /* Pinia */
 import { storeToRefs } from 'pinia';
@@ -37,8 +47,14 @@ import { useEntriesStore } from '@/stores';
 
 // #region Entries
 
-const { entries } = storeToRefs(useEntriesStore());
+const { entries, winner } = storeToRefs(useEntriesStore());
 
 // #endregion Entries
+
+// #region Selection
+
+const { pickWinner } = useEntriesStore();
+
+// #endregion Selection
 
 </script>

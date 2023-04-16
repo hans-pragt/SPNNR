@@ -52,13 +52,26 @@ export const useEntriesStore = defineStore(
 
     // #endregion Entries
 
+    // #region Picking
+
+    const winner : Ref<Entry | undefined> = ref(undefined);
+
+    function pickWinner() {
+      winner.value = getRandomEntry(entries.value);
+    }
+
+    // #endregion Picking
+
     return {
 
       newEntry,
       insertNewEntry,
       removeEntry,
 
-      entries
+      winner,
+      pickWinner,
+
+      entries,
 
     }
 
@@ -70,4 +83,8 @@ function generateEntry(contents : string) : Entry {
     id:       v4(),
     contents
   };
+}
+
+function getRandomEntry(entries : Array<Entry>) : Entry {
+  return entries[Math.floor(Math.random() * entries.length)];
 }

@@ -1,6 +1,10 @@
 <template>
 
-  <div class="container">
+  <div 
+    class           = "container"
+    :style          = "rotationStyle"
+    @transitionend  = "onRotateEnded"
+  >
     <canvas
       ref       = "canvas"
       :width    = "properties.radius * 2"
@@ -19,8 +23,7 @@
 
 /* Vue */
 import type { Ref } from 'vue';
-import { onMounted } from 'vue';
-import { ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 
 /* SPNNR */
 import { 
@@ -36,15 +39,21 @@ import type { Entry } from '@/models';
 // #region Properties
 
 interface RecordProperties {
-  radius : number;
   entries? : Array<Entry>;
+  current? : Entry,
+  radius : number;
+  duration? : number;
+  spins? : number;
 };
 
 const properties = withDefaults(
   defineProps<RecordProperties>(),
   {
+    entries:    () => [],
+    current:    undefined,
     radius:     100,
-    entries:    () => []
+    duration:   5,
+    spins:      10
   }
 );
 
@@ -73,5 +82,44 @@ function render() {
 }
 
 // #endregion Rendering
+
+// #region Rotation
+
+const angle : Ref<number> = ref(0);
+const isRotating : Ref<boolean> = ref(false);
+
+watch(
+  () => properties.current,
+  () => {
+    isRotating.value = true;
+
+    const index = properties.entries.findIndex(e => e.id === properties.current?.id);
+    const arc = (2 * Math.PI) / properties.entries.length;
+
+    const angleInRads = 
+      (properties.spins * (2 * Math.PI)) +  // Number of spins
+      ((arc * index) + (arc / 2)) -         // Angle to the entry
+      (Math.PI / 2);                        // Make entry land on top
+
+    angle.value = angleInRads * (180 / Math.PI);
+  }
+);
+
+const rotationDuration = computed(() => {
+  return isRotating.value ? properties.duration : 0;
+});
+
+const rotationStyle = computed(() => ({
+  'transform':              `rotateZ(${angle.value}deg)`,    // If we used rads here it does not do full rotations.
+  'transition-duration':    `${rotationDuration.value}s`,
+  'transition-function':    'cubic-bezier(0.36, 0.95, 0.64, 1)'
+}));
+
+function onRotateEnded() {
+  isRotating.value = false;
+  angle.value = angle.value % 360;
+}
+
+// #endregion Rotation
 
 </script>
