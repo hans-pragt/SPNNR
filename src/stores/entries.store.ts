@@ -37,10 +37,13 @@ export const useEntriesStore = defineStore(
     ]);
 
     function insertNewEntry() {
-      entries.value.push({
+      entries.value = [
+        ...entries.value,
+        {
         id:       v4(),
         contents: newEntry.value
-      });
+        }
+      ];
 
       // Reset for next entry:
       newEntry.value = '';
