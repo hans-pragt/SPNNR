@@ -1,9 +1,10 @@
 // #region Rendering Constants
 
 const VINYL_COLOR : string          = '#3e3e3f';
-const LABEL_COLOR : string          = 'white';
 const SPINDLE_COLOR : string        = 'black';
 const DIVIDING_LINE_COLOR : string  = '#171717';
+const TEXT_FONT : string            = '32px VT323';
+const TEXT_COLOR : string           = 'white'
 
 // #endregion Rendering Constants
 
@@ -89,8 +90,8 @@ export function renderSlices(context : CanvasRenderingContext2D, radius : number
     context.save();
 
     context.rotate(angle + (arc / 2));
-    context.font = '48px VT323';
-    context.fillStyle = 'white';
+    context.font = TEXT_FONT;
+    context.fillStyle = TEXT_COLOR;
     context.textAlign = 'right';
     context.fillText(item, (radius * 0.95), 12);
 
