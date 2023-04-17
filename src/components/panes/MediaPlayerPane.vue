@@ -32,9 +32,6 @@
 
 // #region Imports
 
-/* Vue */
-import { ref } from 'vue';
-
 /* Pinia */
 import { storeToRefs } from 'pinia';
 

@@ -17,8 +17,6 @@
 
 <script setup lang="ts">
 
-//https://github.com/XiaoLin1995/vue-fortune-wheel/blob/master/src/components/fortuneWheel/index.vue
-
 // #region Imports
 
 /* Vue */
@@ -81,6 +79,13 @@ function render() {
   renderLabel(context, properties.radius);
 }
 
+watch(
+  () => properties.entries,
+  () => {
+    render();
+  }
+);
+
 // #endregion Rendering
 
 // #region Rotation
@@ -117,6 +122,8 @@ const rotationStyle = computed(() => ({
 
 function onRotateEnded() {
   isRotating.value = false;
+
+  // Since the duration is 0 while not rotating, there won't be a visible spin:
   angle.value = angle.value % 360;
 }
 
