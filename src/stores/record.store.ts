@@ -15,7 +15,7 @@ export const useRecordStore = defineStore(
     
     // #region Spin
 
-    const angle : Ref<number> = ref(0);
+    const angle : Ref<number> = ref(0);     // The angle of the record, in degrees.
     const isSpinning : Ref<boolean> = ref(false);
 
     // #endregion Spin

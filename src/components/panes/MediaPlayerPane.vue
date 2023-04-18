@@ -25,6 +25,7 @@
         icon
         color       = "#fb9700"
         :disabled   = "!canSpin"
+        @click      = "onSkipToPrevious();"
       >
         <v-icon>mdi-skip-previous</v-icon>
       </v-btn>
@@ -46,6 +47,7 @@
         icon
         color       = "#fb9700"
         :disabled   = "!canSpin"
+        @click      = "onSkipToNext();"
       >
         <v-icon>mdi-skip-next</v-icon>
       </v-btn>
@@ -83,8 +85,20 @@ const { pickWinner } = useEntriesStore();
 
 // #region Record
 
-const { isSpinning } = storeToRefs(useRecordStore());
+const { angle, isSpinning } = storeToRefs(useRecordStore());
 const canSpin : ComputedRef<boolean> = computed(() => entries.value.length > 0 && !isSpinning.value);
+
+function onSkipToPrevious() {
+  isSpinning.value = true;
+  const arc = 360 / entries.value.length;
+  angle.value -= arc;
+}
+
+function onSkipToNext() {
+  isSpinning.value = true;
+  const arc = 360 / entries.value.length;
+  angle.value += arc;
+}
 
 // #endregion Record
 
