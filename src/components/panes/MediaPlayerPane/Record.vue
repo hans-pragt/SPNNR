@@ -23,6 +23,9 @@
 import type { Ref } from 'vue';
 import { computed, onMounted, ref, watch } from 'vue';
 
+/* Pinia */
+import { storeToRefs } from 'pinia';
+
 /* SPNNR */
 import { 
   clear,
@@ -31,6 +34,7 @@ import {
   renderSlices
 } from './utilities/rendering.utilities';
 import type { Entry } from '@/models';
+import { useRecordStore } from '@/stores';
 
 // #endregion Imports
 
@@ -90,13 +94,12 @@ watch(
 
 // #region Rotation
 
-const angle : Ref<number> = ref(0);
-const isRotating : Ref<boolean> = ref(false);
+const { angle, isSpinning } = storeToRefs(useRecordStore());
 
 watch(
   () => properties.current,
   () => {
-    isRotating.value = true;
+    isSpinning.value = true;
 
     const index = properties.entries.findIndex(e => e.id === properties.current?.id);
     const arc = (2 * Math.PI) / properties.entries.length;
@@ -111,7 +114,7 @@ watch(
 );
 
 const rotationDuration = computed(() => {
-  return isRotating.value ? properties.duration : 0;
+  return isSpinning.value ? properties.duration : 0;
 });
 
 const rotationStyle = computed(() => ({
@@ -121,7 +124,7 @@ const rotationStyle = computed(() => ({
 }));
 
 function onRotateEnded() {
-  isRotating.value = false;
+  isSpinning.value = false;
 
   // Since the duration is 0 while not rotating, there won't be a visible spin:
   angle.value = angle.value % 360;

@@ -24,6 +24,7 @@
       <v-btn
         icon
         color       = "#fb9700"
+        :disabled   = "!canSpin"
       >
         <v-icon>mdi-skip-previous</v-icon>
       </v-btn>
@@ -34,6 +35,7 @@
         icon
         color       = "#fb9700"
         size        = "large"
+        :disabled   = "!canSpin"
         @click      = "pickWinner();"
       >
         <v-icon>mdi-play</v-icon>
@@ -43,6 +45,7 @@
       <v-btn
         icon
         color       = "#fb9700"
+        :disabled   = "!canSpin"
       >
         <v-icon>mdi-skip-next</v-icon>
       </v-btn>
@@ -57,27 +60,33 @@
 
 // #region Imports
 
+/* Vue */
+import type { ComputedRef } from 'vue';
+import { computed } from 'vue';
+
 /* Pinia */
 import { storeToRefs } from 'pinia';
 
 /* SPNNR */
 import Pane from '../common/Pane.vue';
 import Record from './MediaPlayerPane/Record.vue';
-import { useEntriesStore } from '@/stores';
+import { useEntriesStore, useRecordStore } from '@/stores';
 
 // #endregion Imports
 
 // #region Entries
 
 const { entries, winner } = storeToRefs(useEntriesStore());
+const { pickWinner } = useEntriesStore();
 
 // #endregion Entries
 
-// #region Selection
+// #region Record
 
-const { pickWinner } = useEntriesStore();
+const { isSpinning } = storeToRefs(useRecordStore());
+const canSpin : ComputedRef<boolean> = computed(() => entries.value.length > 0 && !isSpinning.value);
 
-// #endregion Selection
+// #endregion Record
 
 </script>
 
