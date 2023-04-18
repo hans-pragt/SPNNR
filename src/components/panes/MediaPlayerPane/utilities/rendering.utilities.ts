@@ -4,7 +4,7 @@ const VINYL_COLOR : string          = '#3e3e3f';
 const SPINDLE_COLOR : string        = 'black';
 const DIVIDING_LINE_COLOR : string  = '#171717';
 const TEXT_FONT : string            = '32px VT323';
-const TEXT_COLOR : string           = 'white'
+const TEXT_COLOR : string           = 'rgba(255, 255, 255, 0.6)'
 
 // #endregion Rendering Constants
 
@@ -75,6 +75,7 @@ export function renderSlices(context : CanvasRenderingContext2D, radius : number
     const angle = arc * index;
 
     // Dividing Line:
+    /*
     const endX = radius * Math.cos(angle);
     const endY = radius * Math.sin(angle);
 
@@ -85,6 +86,7 @@ export function renderSlices(context : CanvasRenderingContext2D, radius : number
     context.closePath();
     context.strokeStyle = DIVIDING_LINE_COLOR;
     context.stroke();
+    */
 
     // Label:
     context.save();

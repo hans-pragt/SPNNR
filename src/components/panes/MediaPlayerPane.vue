@@ -18,11 +18,36 @@
 
     </div>
 
-    <v-btn
-      @click      = "pickWinner();"
-    >
-      Spin
-    </v-btn>
+    <div class="pa-4 text-center controls">
+
+      <!-- Nudge to Previous -->
+      <v-btn
+        icon
+        color       = "#fb9700"
+      >
+        <v-icon>mdi-skip-previous</v-icon>
+      </v-btn>
+
+      <!-- Pick -->
+      <v-btn
+        class       = "mx-2"
+        icon
+        color       = "#fb9700"
+        size        = "large"
+        @click      = "pickWinner();"
+      >
+        <v-icon>mdi-play</v-icon>
+      </v-btn>
+
+      <!-- Nudge to Next -->
+      <v-btn
+        icon
+        color       = "#fb9700"
+      >
+        <v-icon>mdi-skip-next</v-icon>
+      </v-btn>
+
+    </div>
 
   </Pane>
 
@@ -55,3 +80,11 @@ const { pickWinner } = useEntriesStore();
 // #endregion Selection
 
 </script>
+
+<style scoped>
+
+.controls {
+  border-top: 2px solid black;
+}
+
+</style>
