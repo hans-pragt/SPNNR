@@ -4,11 +4,14 @@
       <v-container>
 
         <v-row>
+          
           <v-col>
             <MediaPlayerPane></MediaPlayerPane>
           </v-col>
+
           <v-col cols="3">
             <TodoListPane></TodoListPane>
+            <TwitchPane></TwitchPane>
           </v-col>
         </v-row>
 
@@ -23,6 +26,7 @@
 
 /* SPNNR */
 import TodoListPane from './components/panes/ToDoListPane.vue';
+import TwitchPane from './components/panes/TwitchPane.vue';
 import MediaPlayerPane from './components/panes/MediaPlayerPane.vue';
 
 // #endregion Imports
