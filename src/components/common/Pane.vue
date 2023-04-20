@@ -63,7 +63,7 @@ const cssVariables = computed(() => ({
 
   display:            flex;
   flex-direction:     column;
-  overflow: hidden;
+  overflow:           hidden;
 
   .header {
     background-color: var(--pane-color);
