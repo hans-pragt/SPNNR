@@ -5,12 +5,14 @@
     color   = "#03c498"
   >
     
-    <div class="pa-4">
+    <div class="pa-2 toolbar">
 
       <!-- Entry Input -->
       <v-text-field
         variant   = "outlined"
+        density   = "compact"
         hide-details
+        bg-color  = "#fbeac9"
 
         v-model        = "newEntry"
         @keydown.enter = "insertNewEntry();"
@@ -18,8 +20,6 @@
       </v-text-field>
 
     </div>
-
-    <div class="divider"></div>
 
     <v-list
       class     = "entries-list"
@@ -72,8 +72,8 @@ const { insertNewEntry, removeEntry } = useEntriesStore();
 
 <style scoped lang="scss">
 
-.divider {
-  border-bottom: 2px solid black;
+.toolbar {
+  border-bottom:      2px solid black;
 }
 
 .entries-list {
