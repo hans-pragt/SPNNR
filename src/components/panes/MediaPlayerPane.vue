@@ -5,53 +5,55 @@
     color     = "#fb9700"
   >
 
-    <div class="pa-4">
+    <div class="container">
+      <div class="pa-4 record">
 
-      <!-- Record -->
-      <Record
-        class     = "d-flex justify-center"
-        :radius   = "300"
-        :entries  = "entries"
-        :current  = "winner"
-      >
-      </Record>
+        <!-- Record -->
+        <Record
+          class     = "d-flex justify-center"
+          :radius   = "300"
+          :entries  = "entries"
+          :current  = "winner"
+        >
+        </Record>
 
-    </div>
+      </div>
 
-    <div class="pa-4 text-center controls">
+      <div class="pa-4 text-center controls">
 
-      <!-- Nudge to Previous -->
-      <v-btn
-        icon
-        color       = "#fb9700"
-        :disabled   = "!canSpin"
-        @click      = "onSkipToPrevious();"
-      >
-        <v-icon>mdi-skip-previous</v-icon>
-      </v-btn>
+        <!-- Nudge to Previous -->
+        <v-btn
+          icon
+          color       = "#fb9700"
+          :disabled   = "!canSpin"
+          @click      = "onSkipToPrevious();"
+        >
+          <v-icon>mdi-skip-previous</v-icon>
+        </v-btn>
 
-      <!-- Pick -->
-      <v-btn
-        class       = "mx-2"
-        icon
-        color       = "#fb9700"
-        size        = "large"
-        :disabled   = "!canSpin"
-        @click      = "pickWinner();"
-      >
-        <v-icon>mdi-play</v-icon>
-      </v-btn>
+        <!-- Pick -->
+        <v-btn
+          class       = "mx-2"
+          icon
+          color       = "#fb9700"
+          size        = "large"
+          :disabled   = "!canSpin"
+          @click      = "pickWinner();"
+        >
+          <v-icon>mdi-play</v-icon>
+        </v-btn>
 
-      <!-- Nudge to Next -->
-      <v-btn
-        icon
-        color       = "#fb9700"
-        :disabled   = "!canSpin"
-        @click      = "onSkipToNext();"
-      >
-        <v-icon>mdi-skip-next</v-icon>
-      </v-btn>
+        <!-- Nudge to Next -->
+        <v-btn
+          icon
+          color       = "#fb9700"
+          :disabled   = "!canSpin"
+          @click      = "onSkipToNext();"
+        >
+          <v-icon>mdi-skip-next</v-icon>
+        </v-btn>
 
+      </div>
     </div>
 
   </Pane>
@@ -104,10 +106,19 @@ function onSkipToNext() {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
-.controls {
-  border-top: 2px solid black;
+.container {
+  display:        flex;
+  flex-direction: column;
+
+  .record {
+    flex:         1;
+  }
+
+  .controls {
+    border-top: 2px solid black;
+  }
 }
 
 </style>

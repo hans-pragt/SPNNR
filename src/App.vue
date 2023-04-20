@@ -1,21 +1,13 @@
 <template>
   <v-app>
     <v-main>    
-      <v-container>
 
-        <v-row>
-          
-          <v-col>
-            <MediaPlayerPane></MediaPlayerPane>
-          </v-col>
+      <div class="container pa-8">
+        <MediaPlayerPane class="mediaplayer"></MediaPlayerPane>
+        <TodoListPane class="todolist"></TodoListPane>
+        <TwitchPane class="twitch"></TwitchPane>
+      </div>
 
-          <v-col cols="3">
-            <TodoListPane></TodoListPane>
-            <TwitchPane></TwitchPane>
-          </v-col>
-        </v-row>
-
-      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -33,10 +25,27 @@ import MediaPlayerPane from './components/panes/MediaPlayerPane.vue';
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 .v-application {
   background: linear-gradient(90deg, rgba(193,188,254,1) 0%, rgba(248,206,218,1) 100%);
+}
+
+.container {
+  display:                grid;
+  grid-template-columns:  700px 300px;
+  grid-template-rows:     1fr 300px;
+
+  justify-content:        center;
+  gap:                    32px;
+
+  .mediaplayer {
+    grid-column:  1;
+    grid-row:     1 / 3;
+  }
+
+  
+
 }
 
 </style>
