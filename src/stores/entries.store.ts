@@ -37,6 +37,10 @@ export const useEntriesStore = defineStore(
     ]);
 
     function insertNewEntry() {
+      if (!newEntry.value) {
+        return;
+      }
+
       entries.value = [
         ...entries.value,
         {

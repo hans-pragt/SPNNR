@@ -19,6 +19,14 @@
       >
       </v-text-field>
 
+      <v-btn
+        icon      = "mdi-playlist-plus"
+        variant   = "text"
+        :disabled = "!newEntry"
+        @click    = "insertNewEntry();"
+      >
+      </v-btn>
+
     </div>
 
     <v-list
@@ -77,7 +85,10 @@ const { insertNewEntry, removeEntry } = useEntriesStore();
 <style scoped lang="scss">
 
 .toolbar {
-  border-bottom:      2px solid black;
+  display:          flex;
+  flex-direction:   row;
+
+  border-bottom:    2px solid black;
 }
 
 .entries-list {
