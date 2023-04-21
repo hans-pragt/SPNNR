@@ -2,7 +2,7 @@
 
   <Pane
     title     = "Twitch.tv"
-    color     = "#00a8cc"
+    :color    = "TWITCH_PANE_COLOR"
   >
 
     <!-- Address Bar -->
@@ -14,7 +14,7 @@
         hide-details
         readonly
         value     = "twitch.tv/prxzm"
-        bg-color  = "#fbeac9"
+        :bg-color = "TEXTFIELD_BG_COLOR"
       >
       </v-text-field>
 
@@ -39,6 +39,10 @@
 
 /* SPNNR */
 import Pane from '../common/Pane.vue';
+import {
+ TEXTFIELD_BG_COLOR,
+ TWITCH_PANE_COLOR
+} from '@/constants';
 
 // #endregion Imports
 

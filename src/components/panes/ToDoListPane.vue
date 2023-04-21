@@ -2,7 +2,7 @@
 
   <Pane
     title   = "To Do"
-    color   = "#03c498"
+    :color  = "TODO_LIST_PANE_COLOR"
   >
     
     <div class="pa-2 toolbar">
@@ -12,7 +12,7 @@
         variant   = "outlined"
         density   = "compact"
         hide-details
-        bg-color  = "#fbeac9"
+        :bg-color = "TEXTFIELD_BG_COLOR"
 
         v-model        = "newEntry"
         @keydown.enter = "insertNewEntry();"
@@ -58,6 +58,10 @@ import { storeToRefs } from 'pinia';
 /* SPNNR */
 import Pane from '../common/Pane.vue';
 import { useEntriesStore } from '@/stores';
+import {
+  TODO_LIST_PANE_COLOR,
+  TEXTFIELD_BG_COLOR
+} from '@/constants'
 
 // #endregion Imports
 

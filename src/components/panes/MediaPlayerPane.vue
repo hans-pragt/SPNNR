@@ -2,7 +2,7 @@
 
   <Pane
     title     = "Media Player"
-    color     = "#fb9700"
+    :color    = "MEDIA_PLAYER_PANE_COLOR"
   >
 
     <div class="container">
@@ -24,7 +24,7 @@
         <!-- Nudge to Previous -->
         <v-btn
           icon
-          color       = "#fb9700"
+          :color      = "MEDIA_PLAYER_PANE_COLOR"
           :disabled   = "!canSpin"
           @click      = "onSkipToPrevious();"
         >
@@ -35,7 +35,7 @@
         <v-btn
           class       = "mx-2"
           icon
-          color       = "#fb9700"
+          :color      = "MEDIA_PLAYER_PANE_COLOR"
           size        = "large"
           :disabled   = "!canSpin"
           @click      = "pickWinner();"
@@ -46,7 +46,7 @@
         <!-- Nudge to Next -->
         <v-btn
           icon
-          color       = "#fb9700"
+          :color      = "MEDIA_PLAYER_PANE_COLOR"
           :disabled   = "!canSpin"
           @click      = "onSkipToNext();"
         >
@@ -75,6 +75,9 @@ import { storeToRefs } from 'pinia';
 import Pane from '../common/Pane.vue';
 import Record from './MediaPlayerPane/Record.vue';
 import { useEntriesStore, useRecordStore } from '@/stores';
+import {
+  MEDIA_PLAYER_PANE_COLOR
+} from '@/constants';
 
 // #endregion Imports
 
