@@ -57,6 +57,10 @@ export const useEntriesStore = defineStore(
       entries.value = entries.value.filter(e => e.id !== id);
     }
 
+    function removeAllEntries() {
+      entries.value = [];
+    }
+
     // #endregion Entries
 
     // #region Picking
@@ -74,6 +78,7 @@ export const useEntriesStore = defineStore(
       newEntry,
       insertNewEntry,
       removeEntry,
+      removeAllEntries,
 
       winner,
       pickWinner,

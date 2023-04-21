@@ -74,6 +74,7 @@ const cssVariables = computed(() => ({
   
   .contents {
     flex:       1;
+    overflow:   hidden;
 
     ::-webkit-scrollbar {
       border-left:  1px solid black;

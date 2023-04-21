@@ -5,52 +5,66 @@
     :color  = "TODO_LIST_PANE_COLOR"
   >
     
-    <div class="pa-2 toolbar">
+    <div class="contents">
 
-      <!-- Entry Input -->
-      <v-text-field
-        variant   = "outlined"
-        density   = "compact"
-        hide-details
-        :bg-color = "TEXTFIELD_BG_COLOR"
+      <div class="pa-2 entry">
 
-        v-model        = "newEntry"
-        @keydown.enter = "insertNewEntry();"
+        <!-- Entry Input -->
+        <v-text-field
+          variant   = "outlined"
+          density   = "compact"
+          hide-details
+          :bg-color = "TEXTFIELD_BG_COLOR"
+
+          v-model        = "newEntry"
+          @keydown.enter = "insertNewEntry();"
+        >
+        </v-text-field>
+
+        <v-btn
+          icon      = "mdi-playlist-plus"
+          variant   = "text"
+          :disabled = "!newEntry"
+          @click    = "insertNewEntry();"
+        >
+        </v-btn>
+
+      </div>
+
+      <v-list
+        class     = "entries-list"
+        lines     = "one"
+        bgColor   = "transparent"
       >
-      </v-text-field>
+        <v-list-item
+          v-for     = "entry of entries"
+          :key      = "entry.id"
+          :title    = "entry.contents"
+        >
 
-      <v-btn
-        icon      = "mdi-playlist-plus"
-        variant   = "text"
-        :disabled = "!newEntry"
-        @click    = "insertNewEntry();"
-      >
-      </v-btn>
+          <!-- Remove Item -->
+          <template v-slot:append>
+            <v-btn
+              icon      = "mdi-delete"
+              variant   = "text"
+              @click    = "removeEntry(entry.id);"
+            ></v-btn>
+          </template>
+
+        </v-list-item>
+      </v-list>
+
+      <div class="px-4 controls">
+        <v-btn
+          icon    = "mdi-delete-sweep"
+          variant = "text"
+          @click  = "removeAllEntries();"
+        >
+
+        </v-btn>
+      </div>
 
     </div>
-
-    <v-list
-      class     = "entries-list"
-      lines     = "one"
-      bgColor   = "transparent"
-    >
-      <v-list-item
-        v-for     = "entry of entries"
-        :key      = "entry.id"
-        :title    = "entry.contents"
-      >
-
-        <!-- Remove Item -->
-        <template v-slot:append>
-          <v-btn
-            icon      = "mdi-delete"
-            variant   = "text"
-            @click    = "removeEntry(entry.id);"
-          ></v-btn>
-        </template>
-
-      </v-list-item>
-    </v-list>
 
   </Pane>
 
@@ -76,7 +90,7 @@ import {
 // #region Entries
 
 const { newEntry, entries } = storeToRefs(useEntriesStore())
-const { insertNewEntry, removeEntry } = useEntriesStore();
+const { insertNewEntry, removeEntry, removeAllEntries } = useEntriesStore();
 
 // #endregion Entries
 
@@ -84,17 +98,28 @@ const { insertNewEntry, removeEntry } = useEntriesStore();
 
 <style scoped lang="scss">
 
-.toolbar {
-  display:          flex;
-  flex-direction:   row;
+.contents {
+  height:         100%;
+  display:        flex;
+  flex-direction: column;
 
-  border-bottom:    2px solid black;
-}
+  .entry {
+    display:          flex;
+    flex-direction:   row;
 
-.entries-list {
-  min-height:       400px;
-  max-height:       400px;
-  overflow:         auto;
+    border-bottom:    2px solid black;
+  }
+
+  .entries-list {
+    flex:             1;
+    overflow:         auto;
+  }
+
+  .controls {
+    border-top:     2px solid black;
+    text-align:     right;
+  }
+
 }
 
 // Override the default style of any scrollbar in the contents of this pane:

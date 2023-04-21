@@ -34,7 +34,7 @@ import MediaPlayerPane from './components/panes/MediaPlayerPane.vue';
 .container {
   display:                grid;
   grid-template-columns:  700px 300px;
-  grid-template-rows:     1fr 300px;
+  grid-template-rows:     500px 300px;
 
   justify-content:        center;
   gap:                    32px;
