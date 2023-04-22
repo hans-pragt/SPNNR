@@ -34,7 +34,7 @@ import {
   renderSlices
 } from './utilities/rendering.utilities';
 import type { Entry } from '@/models';
-import { useRecordStore } from '@/stores';
+import { useEntriesStore, useRecordStore } from '@/stores';
 
 // #endregion Imports
 
@@ -85,9 +85,7 @@ function render() {
 
 watch(
   () => properties.entries,
-  () => {
-    render();
-  }
+  () => render()
 );
 
 // #endregion Rendering
@@ -95,6 +93,7 @@ watch(
 // #region Rotation
 
 const { angle, isSpinning } = storeToRefs(useRecordStore());
+const { saveToHistory } = useEntriesStore();
 
 watch(
   () => properties.current,
@@ -128,6 +127,10 @@ function onRotateEnded() {
 
   // Since the duration is 0 while not rotating, there won't be a visible spin:
   angle.value = angle.value % 360;
+
+  if (!!properties.current) {
+    saveToHistory(properties.current);
+  }
 }
 
 // #endregion Rotation

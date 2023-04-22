@@ -56,6 +56,12 @@
       </div>
     </div>
 
+    <!-- Show the Latest Winning Entry -->
+    <NotificationDialog
+      :winner = "lastWinner"
+    >
+    </NotificationDialog>
+
   </Pane>
 
 </template>
@@ -74,10 +80,11 @@ import { storeToRefs } from 'pinia';
 /* SPNNR */
 import Pane from '../common/Pane.vue';
 import Record from './MediaPlayerPane/Record.vue';
+import NotificationDialog from './MediaPlayerPane/NotificationDialog.vue';
+
 import { useEntriesStore, useRecordStore } from '@/stores';
-import {
-  MEDIA_PLAYER_PANE_COLOR
-} from '@/constants';
+import { MEDIA_PLAYER_PANE_COLOR } from '@/constants';
+import type { Entry } from '@/models';
 
 // #endregion Imports
 
@@ -106,6 +113,21 @@ function onSkipToNext() {
 }
 
 // #endregion Record
+
+// #region Winners
+
+const { history } = storeToRefs(useEntriesStore());
+
+const lastWinner : ComputedRef<Entry | undefined> = computed(() => {
+  const historicalEntries = history.value;
+  if (!historicalEntries?.length) {
+    return undefined;
+  }
+
+  return historicalEntries[historicalEntries.length - 1];
+});
+
+// #endregion Winners
 
 </script>
 

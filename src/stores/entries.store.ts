@@ -73,6 +73,21 @@ export const useEntriesStore = defineStore(
 
     // #endregion Picking
 
+    // #region History
+
+    const history : Ref<Array<Entry>> = ref([]);
+
+    function saveToHistory(entry : Entry) {
+      history.value = [
+        ...history.value,
+        {
+          ...entry
+        }
+      ];
+    }
+
+    // #endregion History
+
     return {
 
       newEntry,
@@ -82,6 +97,9 @@ export const useEntriesStore = defineStore(
 
       winner,
       pickWinner,
+
+      history,
+      saveToHistory,
 
       entries,
 
