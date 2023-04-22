@@ -13,7 +13,7 @@
         density   = "compact"
         hide-details
         readonly
-        value     = "twitch.tv/prxzm"
+        value     = "twitch.tv/prxzmlive"
         :bg-color = "TEXTFIELD_BG_COLOR"
       >
       </v-text-field>
