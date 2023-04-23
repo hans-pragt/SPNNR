@@ -1,6 +1,7 @@
 // #region Rendering Constants
 
 const VINYL_COLOR : string          = '#3e3e3f';
+const VINYL_LIGHTER_COLOR : string  = 'rgba(255, 255, 255, 0.1)';
 const SPINDLE_COLOR : string        = 'black';
 const DIVIDING_LINE_COLOR : string  = '#171717';
 const TEXT_FONT : string            = '32px VT323';
@@ -28,8 +29,24 @@ export function clear(context : CanvasRenderingContext2D) {
 export function renderVinyl(context : CanvasRenderingContext2D, radius : number) {
   // Outer circle:
   context.beginPath();
-  context.arc(radius, radius, radius, 0, 2 * Math.PI);
   context.fillStyle = VINYL_COLOR;
+  context.arc(radius, radius, radius, 0, 2 * Math.PI);
+  context.fill();
+
+  // Botttom-right highlight:
+  context.beginPath();
+  context.moveTo(radius, radius);
+  context.fillStyle = VINYL_LIGHTER_COLOR;
+  context.arc(radius, radius, radius, 0, Math.PI / 4);
+  context.lineTo(radius, radius);
+  context.fill();
+
+  // Top-left highlight:
+  context.beginPath();
+  context.moveTo(radius, radius);
+  context.fillStyle = VINYL_LIGHTER_COLOR;
+  context.arc(radius, radius, radius, Math.PI, Math.PI + Math.PI / 4);
+  context.lineTo(radius, radius);
   context.fill();
 }
 

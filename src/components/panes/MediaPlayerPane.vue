@@ -136,6 +136,7 @@ const lastWinner : ComputedRef<Entry | undefined> = computed(() => {
 .container {
   display:        flex;
   flex-direction: column;
+  height:         100%;
 
   .record {
     flex:         1;

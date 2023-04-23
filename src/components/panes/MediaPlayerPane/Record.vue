@@ -1,16 +1,35 @@
 <template>
 
-  <div 
-    class           = "container"
-    :style          = "rotationStyle"
-    @transitionend  = "onRotateEnded"
+  <div
+    class     = "container"
   >
-    <canvas
-      ref       = "canvas"
-      :width    = "properties.radius * 2"
-      :height   = "properties.radius * 2"
+
+    <!-- Stationary -->
+    <div 
+      class           = "vinyl"
     >
-    </canvas>
+      <canvas
+        ref       = "stationary_canvas"
+        :width    = "properties.radius * 2"
+        :height   = "properties.radius * 2"
+      >
+      </canvas>
+    </div>
+
+    <!-- Spinning -->
+    <div 
+      class           = "vinyl"
+      :style          = "rotationStyle"
+      @transitionend  = "onRotateEnded"
+    >
+      <canvas
+        ref       = "spinning_canvas"
+        :width    = "properties.radius * 2"
+        :height   = "properties.radius * 2"
+      >
+      </canvas>
+    </div>
+
   </div>
 
 </template>
@@ -69,16 +88,32 @@ onMounted(() => render());
 
 // #region Rendering
 
-const canvas : Ref<HTMLCanvasElement | undefined> = ref(undefined);
-
 function render() {
-  const context : CanvasRenderingContext2D | null | undefined = canvas.value?.getContext('2d');
+  renderStationaryCanvas();
+  renderSpinningCanvas();
+}
+
+const stationary_canvas : Ref<HTMLCanvasElement | undefined> = ref(undefined);
+
+function renderStationaryCanvas() {
+  const context : CanvasRenderingContext2D | null | undefined = stationary_canvas.value?.getContext('2d');
   if (!context) {
     return;
   }
 
   clear(context);
   renderVinyl(context, properties.radius);
+}
+
+const spinning_canvas : Ref<HTMLCanvasElement | undefined> = ref(undefined);
+
+function renderSpinningCanvas() {
+  const context : CanvasRenderingContext2D | null | undefined = spinning_canvas.value?.getContext('2d');
+  if (!context) {
+    return;
+  }
+
+  clear(context);
   renderSlices(context, properties.radius, properties.entries.map(e => e.contents));
   renderLabel(context, properties.radius);
 }
@@ -134,3 +169,24 @@ function onRotateEnded() {
 // #endregion Rotation
 
 </script>
+
+<style scoped lang="scss">
+
+.container {
+  position:     relative;
+  height:       100%;
+
+  .vinyl {
+    position:     absolute;
+    top:          0;
+    right:        0;
+    bottom:       0;
+    left:         0;
+
+    display:      flex;
+    align-items:  center;
+    justify-content: center;
+  }
+}
+
+</style>
