@@ -23,34 +23,34 @@
 
         <!-- Nudge to Previous -->
         <v-btn
-          icon
+          icon        = "mdi-skip-previous"
+          elevation   = "0"
           :color      = "MEDIA_PLAYER_PANE_COLOR"
           :disabled   = "!canSpin"
           @click      = "onSkipToPrevious();"
         >
-          <v-icon>mdi-skip-previous</v-icon>
         </v-btn>
 
         <!-- Pick -->
         <v-btn
           class       = "mx-2"
-          icon
+          elevation   = "0"
+          icon        = "mdi-play"
           :color      = "MEDIA_PLAYER_PANE_COLOR"
           size        = "large"
           :disabled   = "!canSpin"
           @click      = "pickWinner();"
         >
-          <v-icon>mdi-play</v-icon>
         </v-btn>
 
         <!-- Nudge to Next -->
         <v-btn
-          icon
+          icon        = "mdi-skip-next"
+          elevation   = "0"
           :color      = "MEDIA_PLAYER_PANE_COLOR"
           :disabled   = "!canSpin"
           @click      = "onSkipToNext();"
         >
-          <v-icon>mdi-skip-next</v-icon>
         </v-btn>
 
       </div>
