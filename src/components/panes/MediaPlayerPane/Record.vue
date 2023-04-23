@@ -102,11 +102,9 @@ watch(
 
     const index = properties.entries.findIndex(e => e.id === properties.current?.id);
     const arc = (2 * Math.PI) / properties.entries.length;
-
     const angleInRads = 
       (properties.spins * (2 * Math.PI)) +  // Number of spins
-      ((arc * index) + (arc / 2)) -         // Angle to the entry
-      (Math.PI / 2);                        // Make entry land on top
+      (Math.PI * 2) - ((arc * index))         // Angle to the entry
 
     angle.value = angleInRads * (180 / Math.PI);
   }

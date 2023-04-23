@@ -68,10 +68,12 @@ export function renderLabel(context : CanvasRenderingContext2D, radius : number)
 export function renderSlices(context : CanvasRenderingContext2D, radius : number, items : Array<string>) {
   context.save();
 
+  const arc = ((2 * Math.PI) / items.length);
+
   context.translate(radius, radius);
+  context.rotate(-(Math.PI / 2) - (arc / 2));
   
   items.forEach((item, index) => {
-    const arc = ((2 * Math.PI) / items.length);
     const angle = arc * index;
 
     // Dividing Line:

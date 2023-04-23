@@ -68,7 +68,7 @@ export const useEntriesStore = defineStore(
     const winner : Ref<Entry | undefined> = ref(undefined);
 
     function pickWinner() {
-      winner.value = getRandomEntry(entries.value);
+      winner.value = { ...getRandomEntry(entries.value) };
     }
 
     // #endregion Picking
