@@ -22,13 +22,34 @@
 
     <div class="divider"></div>
 
-    <a 
-      href    = "https://www.twitch.tv/prxzmlive"
-      target  = "_blank"
-    >
-      <img src="public/images/twitch_stream.png">
-    </a>
+    <div class="container">
 
+      <!-- Background -->
+      <a 
+        href    = "https://www.twitch.tv/prxzmlive"
+        target  = "_blank"
+      >
+        <img src="public/images/twitch_stream.png">
+      </a>
+
+      <!-- Nick -->
+      <div 
+        v-if    = "nickSays" 
+        class   = "nick speech_bubble"
+      >
+        {{ nickSays }}
+      </div>
+
+      <!-- Emma -->
+      <div 
+        v-if    = "emmaSays" 
+        class   = "emma speech_bubble"
+      >
+        {{ emmaSays }}
+      </div>
+
+    </div>
+    
   </Pane>
 
 </template>
@@ -37,14 +58,53 @@
 
 // #region Imports
 
+/* Vue */
+import { computed, type ComputedRef } from 'vue';
+
+/* Pinia */
+import { storeToRefs } from 'pinia';
+
 /* SPNNR */
 import Pane from '../common/Pane.vue';
 import {
  TEXTFIELD_BG_COLOR,
  TWITCH_PANE_COLOR
 } from '@/constants';
+import { useEntriesStore } from '@/stores';
 
 // #endregion Imports
+
+// #region Speech Bubbles
+
+const { history } = storeToRefs(useEntriesStore());
+
+const nickSays : ComputedRef<string> = computed(() => {
+  if (history.value.length === 0) {
+    return '';
+  }
+
+  let offsetFromEnd = 2;
+  if (history.value.length % 2 !== 0) {
+    offsetFromEnd = 1;
+  }
+
+  return history.value[history.value.length - offsetFromEnd].contents;
+});
+
+const emmaSays : ComputedRef<string> = computed(() => {
+  if (history.value.length <= 1) {
+    return '';
+  }
+
+  let offsetFromEnd = 2;
+  if (history.value.length % 2 === 0) {
+    offsetFromEnd = 1;
+  }
+
+  return history.value[history.value.length - offsetFromEnd].contents;
+});
+
+// #endregion Speech Bubbles
 
 </script>
 
@@ -54,9 +114,36 @@ import {
   border-bottom:      2px solid black;
 }
 
-img {
-  width:              100%;
-  margin-bottom:      -12px;     // Not sure why, but this fixes a gap.
+.container {
+
+  img {
+    width:              100%;
+    margin-bottom:      -12px;     // Not sure why, but this fixes a gap.
+  }
+
+  position:       relative;
+  .speech_bubble {
+    position:           absolute;
+
+    text-align:         center;
+    font-family:        'VT323';
+    font-size:          24px;
+
+    &.nick {
+      top:                0px;
+      right:              20px;
+      width:              160px;
+      background-image:   url('/images/speech_bubble_nick.png');
+    }
+
+    &.emma {
+      top:                100px;
+      right:              4px;
+      width:              120px;
+      background-image:   url('/images/speech_bubble_emma.png');
+    }
+  }
+
 }
 
 </style>
