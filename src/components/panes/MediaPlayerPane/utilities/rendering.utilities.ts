@@ -3,7 +3,6 @@
 const VINYL_COLOR : string          = '#3e3e3f';
 const VINYL_LIGHTER_COLOR : string  = 'rgba(255, 255, 255, 0.1)';
 const SPINDLE_COLOR : string        = 'black';
-const DIVIDING_LINE_COLOR : string  = '#171717';
 const TEXT_FONT : string            = '32px VT323';
 const TEXT_COLOR : string           = 'rgba(255, 255, 255, 0.6)'
 
@@ -56,18 +55,10 @@ export function renderVinyl(context : CanvasRenderingContext2D, radius : number)
 export function renderLabel(context : CanvasRenderingContext2D, radius : number, cover : string) {
   const image = new Image();
   image.onload = () => {
-    context.save();
-
-    // Clip circle from label.
-    context.beginPath();
-    context.arc(radius, radius, radius * 0.35, 0, 2 * Math.PI);
-    context.clip();
-    
+            
     // Drab label.
     const labelSize = radius * 0.7;
     context.drawImage(image, radius - (labelSize / 2), radius - (labelSize / 2), labelSize, labelSize);
-
-    context.restore();
 
     // Spindle
     context.beginPath();
@@ -92,20 +83,6 @@ export function renderSlices(context : CanvasRenderingContext2D, radius : number
   
   items.forEach((item, index) => {
     const angle = arc * index;
-
-    // Dividing Line:
-    /*
-    const endX = radius * Math.cos(angle);
-    const endY = radius * Math.sin(angle);
-
-    context.beginPath();
-    context.lineWidth = 3;
-    context.moveTo(0, 0);
-    context.lineTo(endX, endY);
-    context.closePath();
-    context.strokeStyle = DIVIDING_LINE_COLOR;
-    context.stroke();
-    */
 
     // Label:
     context.save();

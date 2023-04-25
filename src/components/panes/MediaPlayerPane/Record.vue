@@ -40,7 +40,7 @@
 
 /* Vue */
 import type { Ref } from 'vue';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 /* Pinia */
 import { storeToRefs } from 'pinia';
@@ -82,7 +82,8 @@ const properties = withDefaults(
 
 // #region Life-Cycle
 
-onMounted(() => render());
+// Tried putting this in onmounted, but the fonts have not loaded at that point.
+window.onload = () => render();
 
 // #endregion Life-Cycle
 
@@ -183,9 +184,11 @@ function onRotateEnded() {
     bottom:       0;
     left:         0;
 
-    display:      flex;
-    align-items:  center;
-    justify-content: center;
+    display:          flex;
+    align-items:      center;
+    justify-content:  center;
+
+    font-family:      'VT323';
   }
 }
 
