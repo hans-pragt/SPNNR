@@ -115,7 +115,7 @@ function renderSpinningCanvas() {
 
   clear(context);
   renderSlices(context, properties.radius, properties.entries.map(e => e.contents));
-  renderLabel(context, properties.radius);
+  renderLabel(context, properties.radius, cover.value);
 }
 
 watch(
@@ -127,7 +127,7 @@ watch(
 
 // #region Rotation
 
-const { angle, isSpinning } = storeToRefs(useRecordStore());
+const { angle, cover, isSpinning } = storeToRefs(useRecordStore());
 const { saveToHistory } = useEntriesStore();
 
 watch(

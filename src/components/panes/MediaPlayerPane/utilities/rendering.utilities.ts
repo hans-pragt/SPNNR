@@ -53,7 +53,7 @@ export function renderVinyl(context : CanvasRenderingContext2D, radius : number)
 /**
  * Renders the label of a record.
  */
-export function renderLabel(context : CanvasRenderingContext2D, radius : number) {
+export function renderLabel(context : CanvasRenderingContext2D, radius : number, cover : string) {
   const image = new Image();
   image.onload = () => {
     context.save();
@@ -76,7 +76,7 @@ export function renderLabel(context : CanvasRenderingContext2D, radius : number)
     context.fill();
   }
 
-  image.src = 'images/faultlines_label.jpg';
+  image.src = cover;
 }
 
 /**
