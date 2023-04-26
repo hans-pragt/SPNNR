@@ -55,6 +55,11 @@
       </v-list>
 
       <div class="px-4 controls">
+
+        <span class="count">
+          {{ entriesMessage }}
+        </span>
+
         <v-btn
           icon    = "mdi-delete-sweep"
           variant = "text"
@@ -74,6 +79,10 @@
 
 // #region Imports
 
+/* Vue */
+import type { ComputedRef } from 'vue';
+import { computed } from 'vue';
+
 /* Pinia */
 import { storeToRefs } from 'pinia';
 
@@ -91,6 +100,17 @@ import {
 
 const { newEntry, entries } = storeToRefs(useEntriesStore())
 const { insertNewEntry, removeEntry, removeAllEntries } = useEntriesStore();
+
+const entryCount : ComputedRef<number> = computed(() => entries.value.length);
+const entriesMessage : ComputedRef<string> = computed(() => {
+  if (entryCount.value === 1) {
+    return '1 Entry';
+  } else if (entryCount.value > 1) {
+    return `${entryCount.value} Entries`;
+  } else {
+    return 'No Entries';
+  }
+});
 
 // #endregion Entries
 
@@ -117,7 +137,13 @@ const { insertNewEntry, removeEntry, removeAllEntries } = useEntriesStore();
 
   .controls {
     border-top:     2px solid black;
-    text-align:     right;
+    display:        flex;
+    flex-direction: row;
+    align-items:    center;
+
+    .count {
+      flex:         1;
+    }
   }
 
 }
