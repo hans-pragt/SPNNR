@@ -29,7 +29,7 @@
         href    = "https://www.twitch.tv/prxzmlive"
         target  = "_blank"
       >
-        <img src="public/images/twitch_stream.png">
+        <img src="public/images/stream.jpg">
       </a>
 
       <!-- Nick -->
