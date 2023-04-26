@@ -14,15 +14,15 @@
 
       <Pane
         title   = "Alert"
-        :color  = "ALERT_PANE_COLOR"
+        :color  = "kind.color"
       >
 
         <div class="message pa-8">
           <v-icon
             class   = "icon mr-6"
-            icon    = "mdi-alert-circle"
+            :icon   = "kind.icon"
             size    = "x-large"
-            :color  = "ALERT_PANE_COLOR"
+            :color  = "kind.color"
           >
           </v-icon>
           <span class="text-h2">{{ properties.winner?.contents }}</span>
@@ -55,8 +55,12 @@ import { ref, watch } from 'vue';
 /* SPNNR */
 import Pane from '@/components/common/Pane.vue';
 
-import type { Entry } from '@/models';
-import { ALERT_PANE_COLOR } from '@/constants';
+import type { Entry, NotificationKind } from '@/models';
+import { 
+  ALERT_PANE_COLOR,
+  HELP_PANE_COLOR,
+  SUCCESS_PANE_COLOR
+} from '@/constants';
 
 // #endregion Imports
 
@@ -77,9 +81,27 @@ const showDialog : Ref<boolean> = ref(false);
 watch(
   () => properties.winner,
   () => {
+    kind.value = kinds.value[Math.floor(Math.random() * kinds.value.length)];
     showDialog.value = true;
   }
 );
+
+const kinds : Ref<Array<NotificationKind>> = ref([
+  {
+    icon:   'mdi-alert-circle',
+    color:  ALERT_PANE_COLOR   
+  },
+  {
+    icon:   'mdi-help-circle',
+    color:  HELP_PANE_COLOR
+  },
+  {
+    icon:   'mdi-check-circle',
+    color:  SUCCESS_PANE_COLOR
+  }
+]);
+
+const kind : Ref<NotificationKind> = ref(kinds.value[0]);
 
 // #endregion Dialog
 
