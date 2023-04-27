@@ -73,21 +73,44 @@
 
 /* Vue */
 import type { ComputedRef } from 'vue';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 /* Pinia */
 import { storeToRefs } from 'pinia';
 
+/* Hotkeys */
+import type { HotKey } from 'vue3-hotkey';
+import useHotkey from 'vue3-hotkey'
+
 /* SPNNR */
+import type { Entry } from '@/models';
+
 import Pane from '../common/Pane.vue';
 import Record from './MediaPlayerPane/Record.vue';
 import NotificationDialog from './MediaPlayerPane/NotificationDialog.vue';
 
 import { useEntriesStore, useRecordStore } from '@/stores';
 import { MEDIA_PLAYER_PANE_COLOR } from '@/constants';
-import type { Entry } from '@/models';
+import { isFromInputField } from './MediaPlayerPane/utilities/hotkeys.utilities';
 
 // #endregion Imports
+
+// #region Hotkeys
+
+const hotkeys = ref<Array<HotKey>>([
+  {
+    keys: ['space'],
+    handler(keys, event) {
+      if (!isFromInputField(event) && canSpin.value) {
+        pickWinner();
+      }
+    }
+  }
+]);
+
+useHotkey(hotkeys.value);
+
+// #endregion Hotkeys
 
 // #region Entries
 

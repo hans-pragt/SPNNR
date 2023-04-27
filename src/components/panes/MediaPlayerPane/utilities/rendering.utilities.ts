@@ -135,8 +135,8 @@ export function renderStem(context : CanvasRenderingContext2D, radius : number) 
   context.beginPath();
   context.fillStyle = VINYL_LIGHTER_COLOR;
 
-  context.moveTo(radius - stemBaseRadius + stemBaseRadius / 2, stemBaseRadius / 4);
-  context.lineTo(radius + stemBaseRadius - stemBaseRadius / 2, stemBaseRadius / 4);
+  context.moveTo(radius - stemBaseRadius / 4, stemBaseRadius / 4);
+  context.lineTo(radius + stemBaseRadius / 4, stemBaseRadius / 4);
   context.lineTo(radius, stemBaseRadius / 2 + 4);
 
   context.fill();
