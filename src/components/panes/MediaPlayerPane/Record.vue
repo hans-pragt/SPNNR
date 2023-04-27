@@ -6,7 +6,7 @@
 
     <!-- Stationary -->
     <div 
-      class           = "vinyl"
+      class           = "canvas"
     >
       <canvas
         ref       = "stationary_canvas"
@@ -18,7 +18,7 @@
 
     <!-- Spinning -->
     <div 
-      class           = "vinyl"
+      class           = "canvas"
       :style          = "rotationStyle"
       @transitionend  = "onRotateEnded"
     >
@@ -26,6 +26,18 @@
         ref       = "spinning_canvas"
         :width    = "properties.radius * 2"
         :height   = "properties.radius * 2"
+      >
+      </canvas>
+    </div>
+
+    <!-- Stem -->
+    <div
+      class       = "canvas"
+    >
+      <canvas
+        ref       = "stem_canvas"
+        :width    = "properties.radius * 2"
+        :height   = "properties.radius * 2 + 75"
       >
       </canvas>
     </div>
@@ -50,7 +62,8 @@ import {
   clear,
   renderLabel,
   renderVinyl,
-  renderSlices
+  renderSlices,
+  renderStem
 } from './utilities/rendering.utilities';
 import type { Entry } from '@/models';
 import { useEntriesStore, useRecordStore } from '@/stores';
@@ -92,6 +105,7 @@ window.onload = () => render();
 function render() {
   renderStationaryCanvas();
   renderSpinningCanvas();
+  renderStemCanvas();
 }
 
 const stationary_canvas : Ref<HTMLCanvasElement | undefined> = ref(undefined);
@@ -117,6 +131,18 @@ function renderSpinningCanvas() {
   clear(context);
   renderSlices(context, properties.radius, properties.entries.map(e => e.contents));
   renderLabel(context, properties.radius, cover.value);
+}
+
+const stem_canvas : Ref<HTMLCanvasElement | undefined> = ref(undefined);
+
+function renderStemCanvas() {
+  const context : CanvasRenderingContext2D | null | undefined = stem_canvas.value?.getContext('2d');
+  if (!context) {
+    return;
+  }
+
+  clear(context);
+  renderStem(context, properties.radius);
 }
 
 watch(
@@ -177,7 +203,7 @@ function onRotateEnded() {
   position:     relative;
   height:       100%;
 
-  .vinyl {
+  .canvas {
     position:     absolute;
     top:          0;
     right:        0;
@@ -187,8 +213,6 @@ function onRotateEnded() {
     display:          flex;
     align-items:      center;
     justify-content:  center;
-
-    font-family:      'VT323';
   }
 }
 

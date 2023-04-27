@@ -2,6 +2,7 @@
 
 const VINYL_COLOR : string          = '#3e3e3f';
 const VINYL_LIGHTER_COLOR : string  = 'rgba(255, 255, 255, 0.1)';
+const STEM_COLOR : string           = '#a0a0a0';
 const SPINDLE_COLOR : string        = 'black';
 const TEXT_FONT : string            = '32px VT323';
 const TEXT_COLOR : string           = 'rgba(255, 255, 255, 0.6)'
@@ -91,12 +92,54 @@ export function renderSlices(context : CanvasRenderingContext2D, radius : number
     context.font = TEXT_FONT;
     context.fillStyle = TEXT_COLOR;
     context.textAlign = 'right';
-    context.fillText(item, (radius * 0.95), 12);
+    context.fillText(item, (radius * 0.95), 6);
 
     context.restore();
   });
 
   context.restore();
+}
+
+/**
+ * Renders the stem.
+ */
+export function renderStem(context : CanvasRenderingContext2D, radius : number) {
+  const stemBaseRadius = radius * 0.15;
+
+  // Stem:
+  context.beginPath();
+  context.strokeStyle = STEM_COLOR;
+  context.lineWidth = 12;
+
+  context.moveTo(radius, 0);
+  context.lineTo((radius * 2) - stemBaseRadius, stemBaseRadius * 2);
+  context.stroke();
+
+  // Base:
+  context.beginPath();
+  context.fillStyle = VINYL_COLOR;
+
+  context.arc((radius * 2) - stemBaseRadius, stemBaseRadius * 2, stemBaseRadius, 0, 2 * Math.PI);
+  
+  context.fill();
+
+  // Head:
+  context.beginPath();
+  context.fillStyle = VINYL_COLOR;
+
+  context.roundRect(radius - stemBaseRadius, 0, 2 * stemBaseRadius, stemBaseRadius * 2/3, 6);
+
+  context.fill();
+
+  // Indicator:
+  context.beginPath();
+  context.fillStyle = VINYL_LIGHTER_COLOR;
+
+  context.moveTo(radius - stemBaseRadius + stemBaseRadius / 2, stemBaseRadius / 4);
+  context.lineTo(radius + stemBaseRadius - stemBaseRadius / 2, stemBaseRadius / 4);
+  context.lineTo(radius, stemBaseRadius / 2 + 4);
+
+  context.fill();
 }
 
 // #endregion Rendering Utilities
