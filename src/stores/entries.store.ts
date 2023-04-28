@@ -44,13 +44,32 @@ export const useEntriesStore = defineStore(
       entries.value = [
         ...entries.value,
         {
-        id:       v4(),
-        contents: newEntry.value
+          id:       v4(),
+          contents: newEntry.value,
+          visible:  true
         }
       ];
 
       // Reset for next entry:
       newEntry.value = '';
+    }
+
+    function toggleEntryVisibility(id : string) {
+      const entryIndex = entries.value.findIndex(e => e.id === id);
+      if (entryIndex < 0) {
+        return;
+      }
+
+      const entry = entries.value[entryIndex];
+
+      entries.value.splice(
+        entryIndex,
+        1,
+        {
+          ...entry,
+          visible: !entry.visible
+        }
+      );
     }
 
     function removeEntry(id : string) {
@@ -92,6 +111,7 @@ export const useEntriesStore = defineStore(
 
       newEntry,
       insertNewEntry,
+      toggleEntryVisibility,
       removeEntry,
       removeAllEntries,
 
@@ -111,10 +131,13 @@ export const useEntriesStore = defineStore(
 function generateEntry(contents : string) : Entry {
   return {
     id:       v4(),
-    contents
+    contents,
+    visible:  true
   };
 }
 
 function getRandomEntry(entries : Array<Entry>) : Entry {
-  return entries[Math.floor(Math.random() * entries.length)];
+  const visibleEntries = entries.filter(entry => entry.visible);
+
+  return visibleEntries[Math.floor(Math.random() * visibleEntries.length)];
 }

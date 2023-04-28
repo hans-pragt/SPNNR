@@ -15,6 +15,11 @@ export interface Entry {
      */
     contents : string;
 
+    /**
+     * Whether or not the entry should be included in the wheel.
+     */
+    visible : boolean;
+
     // #endregion Properties
 
 }

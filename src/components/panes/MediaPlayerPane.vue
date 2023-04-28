@@ -13,7 +13,7 @@
         <Record
           class     = "d-flex justify-center"
           :radius   = "300"
-          :entries  = "entries"
+          :entries  = "visibleEntries"
           :current  = "winner"
         >
         </Record>
@@ -117,22 +117,24 @@ useHotkey(hotkeys.value);
 const { entries, winner } = storeToRefs(useEntriesStore());
 const { pickWinner } = useEntriesStore();
 
+const visibleEntries : ComputedRef<Array<Entry>> = computed(() => entries.value.filter(entry => entry.visible));
+
 // #endregion Entries
 
 // #region Record
 
 const { angle, isSpinning } = storeToRefs(useRecordStore());
-const canSpin : ComputedRef<boolean> = computed(() => entries.value.length > 0 && !isSpinning.value);
+const canSpin : ComputedRef<boolean> = computed(() => visibleEntries.value.length > 0 && !isSpinning.value);
 
 function onSkipToPrevious() {
   isSpinning.value = true;
-  const arc = 360 / entries.value.length;
+  const arc = 360 / visibleEntries.value.length;
   angle.value -= arc;
 }
 
 function onSkipToNext() {
   isSpinning.value = true;
-  const arc = 360 / entries.value.length;
+  const arc = 360 / visibleEntries.value.length;
   angle.value += arc;
 }
 

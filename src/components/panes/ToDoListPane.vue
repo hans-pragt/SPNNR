@@ -42,13 +42,24 @@
           :title    = "entry.contents"
         >
 
-          <!-- Remove Item -->
           <template v-slot:append>
+
+            <!-- Hide Item -->
+            <v-btn
+              :icon     = "entry.visible ? 'mdi-eye' : 'mdi-eye-off'"
+              variant   = "text"
+              @click    = "toggleEntryVisibility(entry.id)"
+            >
+            </v-btn>
+
+            <!-- Remove Item -->
             <v-btn
               icon      = "mdi-delete"
               variant   = "text"
               @click    = "removeEntry(entry.id);"
-            ></v-btn>
+            >
+            </v-btn>
+
           </template>
 
         </v-list-item>
@@ -65,7 +76,6 @@
           variant = "text"
           @click  = "removeAllEntries();"
         >
-
         </v-btn>
       </div>
 
@@ -99,7 +109,12 @@ import {
 // #region Entries
 
 const { newEntry, entries } = storeToRefs(useEntriesStore())
-const { insertNewEntry, removeEntry, removeAllEntries } = useEntriesStore();
+const { 
+  insertNewEntry, 
+  removeEntry, 
+  removeAllEntries,
+  toggleEntryVisibility
+} = useEntriesStore();
 
 const entryCount : ComputedRef<number> = computed(() => entries.value.length);
 const entriesMessage : ComputedRef<string> = computed(() => {
