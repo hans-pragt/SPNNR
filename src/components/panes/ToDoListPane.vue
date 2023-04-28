@@ -39,8 +39,33 @@
         <v-list-item
           v-for     = "entry of entries"
           :key      = "entry.id"
-          :title    = "entry.contents"
         >
+
+        <v-list-item-title>
+
+          <div
+            v-if    = "isEditing !== entry.id"
+            class   = "contents"
+            @click  = "isEditing = entry.id;"
+          >
+            {{ entry.contents }}
+          </div>
+
+          <v-text-field
+            v-else
+            ref         = "contentsField"
+            variant     = "outlined"
+            density     = "compact"
+            hide-details
+            autofocus
+            :bg-color   = "TEXTFIELD_BG_COLOR"
+            v-model:model-value = "entry.contents"
+            @input      = "updateContents(entry.id, $event.target.value);"
+            @blur       = "isEditing = undefined"
+          >
+
+          </v-text-field>          
+        </v-list-item-title>
 
           <template v-slot:append>
 
@@ -90,8 +115,8 @@
 // #region Imports
 
 /* Vue */
-import type { ComputedRef } from 'vue';
-import { computed } from 'vue';
+import type { ComputedRef, Ref } from 'vue';
+import { computed, ref } from 'vue';
 
 /* Pinia */
 import { storeToRefs } from 'pinia';
@@ -113,6 +138,7 @@ const {
   insertNewEntry, 
   removeEntry, 
   removeAllEntries,
+  updateContents,
   toggleEntryVisibility
 } = useEntriesStore();
 
@@ -128,6 +154,12 @@ const entriesMessage : ComputedRef<string> = computed(() => {
 });
 
 // #endregion Entries
+
+// #region Editing
+
+const isEditing : Ref<string | undefined> = ref(undefined);
+
+// #endregion Editing
 
 </script>
 
@@ -148,6 +180,10 @@ const entriesMessage : ComputedRef<string> = computed(() => {
   .entries-list {
     flex:             1;
     overflow:         auto;
+
+    .contents {
+      cursor:           pointer;
+    }
   }
 
   .controls {

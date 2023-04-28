@@ -54,8 +54,26 @@ export const useEntriesStore = defineStore(
       newEntry.value = '';
     }
 
-    function toggleEntryVisibility(id : string) {
-      const entryIndex = entries.value.findIndex(e => e.id === id);
+    function updateContents(entryId : string, contents : string) {
+      const entryIndex = entries.value.findIndex(e => e.id === entryId);
+      if (entryIndex < 0) {
+        return;
+      }
+
+      const entry = entries.value[entryIndex];
+
+      entries.value.splice(
+        entryIndex,
+        1,
+        {
+          ...entry,
+          contents
+        }
+      );
+    }
+
+    function toggleEntryVisibility(entryId : string) {
+      const entryIndex = entries.value.findIndex(e => e.id === entryId);
       if (entryIndex < 0) {
         return;
       }
@@ -111,6 +129,7 @@ export const useEntriesStore = defineStore(
 
       newEntry,
       insertNewEntry,
+      updateContents,
       toggleEntryVisibility,
       removeEntry,
       removeAllEntries,
