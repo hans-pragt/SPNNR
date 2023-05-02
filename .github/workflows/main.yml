@@ -12,4 +12,9 @@ jobs:
         run: |
           npm ci
           npm run build
-      
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          repository-name: hans-pragt/hans-pragt.github.io
+          token: ${{ secrets.DEPLOY_TOKEN }}
