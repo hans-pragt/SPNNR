@@ -27,14 +27,7 @@ export const useEntriesStore = defineStore(
 
     // #region Entries
 
-    const entries : Ref<Array<Entry>> = ref([
-      // TODO Inserting dev values.
-      generateEntry('House'),
-      generateEntry('Riddim'),
-      generateEntry('Classical'),
-      generateEntry('Disco'),
-      generateEntry('Funk')
-    ]);
+    const entries : Ref<Array<Entry>> = ref([]);
 
     function insertNewEntry() {
       if (!newEntry.value) {
