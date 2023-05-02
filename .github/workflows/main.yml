@@ -17,3 +17,4 @@ jobs:
         with:
           folder: dist
           repository-name: hans-pragt/hans-pragt.github.io
+          token: ${{ secrets.DEPLOY_TOKEN }}
