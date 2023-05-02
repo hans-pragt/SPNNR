@@ -4,7 +4,7 @@ const VINYL_COLOR : string          = '#3e3e3f';
 const VINYL_LIGHTER_COLOR : string  = 'rgba(255, 255, 255, 0.1)';
 const STEM_COLOR : string           = '#a0a0a0';
 const SPINDLE_COLOR : string        = 'black';
-const TEXT_FONT : string            = '32px VT323';
+const TEXT_FONT : string            = 'VT323';
 const TEXT_COLOR : string           = 'rgba(255, 255, 255, 0.6)'
 
 // #endregion Rendering Constants
@@ -89,7 +89,10 @@ export function renderSlices(context : CanvasRenderingContext2D, radius : number
     context.save();
 
     context.rotate(angle + (arc / 2));
-    context.font = TEXT_FONT;
+
+    const fontSize = Math.min((radius * 1.4) / item.length, 50);
+
+    context.font = `${fontSize}px ${TEXT_FONT}`;
     context.fillStyle = TEXT_COLOR;
     context.textAlign = 'right';
     context.fillText(item, (radius * 0.95), 6);
