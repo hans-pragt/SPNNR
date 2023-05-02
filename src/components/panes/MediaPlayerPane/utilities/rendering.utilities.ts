@@ -111,7 +111,7 @@ export function renderStem(context : CanvasRenderingContext2D, radius : number) 
   context.strokeStyle = STEM_COLOR;
   context.lineWidth = 12;
 
-  context.moveTo(radius, 0);
+  context.moveTo(radius, 4);
   context.lineTo((radius * 2) - stemBaseRadius, stemBaseRadius * 2);
   context.stroke();
 
@@ -127,7 +127,7 @@ export function renderStem(context : CanvasRenderingContext2D, radius : number) 
   context.beginPath();
   context.fillStyle = VINYL_COLOR;
 
-  context.roundRect(radius - stemBaseRadius * 0.8, 0, 2 * stemBaseRadius * 0.8, stemBaseRadius * 2/3, 4);
+  context.rect(radius - stemBaseRadius * 0.8, 0, 2 * stemBaseRadius * 0.8, stemBaseRadius * 2/3);
 
   context.fill();
 
