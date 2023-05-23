@@ -137,7 +137,8 @@ export function renderStem(context : CanvasRenderingContext2D, radius : number) 
   context.beginPath();
   context.fillStyle = VINYL_COLOR;
 
-  context.roundRect(radius - stemBaseRadius * 0.8, 0, 2 * stemBaseRadius * 0.8, stemBaseRadius * 2/3, 12);
+  // Context is cast here since the github build pipeline does not recognize it.
+  (context as any).roundRect(radius - stemBaseRadius * 0.8, 0, 2 * stemBaseRadius * 0.8, stemBaseRadius * 2/3, 12);
 
   context.fill();
 
