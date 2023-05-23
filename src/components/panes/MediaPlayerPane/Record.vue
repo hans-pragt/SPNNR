@@ -169,6 +169,11 @@ watch(
       (Math.PI * 2) - ((arc * index))         // Angle to the entry
 
     angle.value = angleInRads * (180 / Math.PI);
+
+    // Play audio sound:
+    console.log('test');
+    const scratch = new Audio('/sounds/record_scratch.mp3');
+    scratch.play();
   }
 );
 
