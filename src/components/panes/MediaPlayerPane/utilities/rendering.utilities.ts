@@ -112,10 +112,17 @@ export function renderStem(context : CanvasRenderingContext2D, radius : number) 
   // Stem:
   context.beginPath();
   context.strokeStyle = STEM_COLOR;
-  context.lineWidth = 12;
+  context.lineWidth = 8;
 
-  context.moveTo(radius, 4);
-  context.lineTo((radius * 2) - stemBaseRadius, stemBaseRadius * 2);
+  const bezierX = (radius * 2) - (stemBaseRadius * 3);
+  const bezierY = 14;
+
+  context.moveTo(radius, 12);
+  context.bezierCurveTo(
+    bezierX, bezierY,
+    bezierX, bezierY, 
+    (radius * 2) - stemBaseRadius, stemBaseRadius * 2
+  );
   context.stroke();
 
   // Base:
@@ -130,17 +137,17 @@ export function renderStem(context : CanvasRenderingContext2D, radius : number) 
   context.beginPath();
   context.fillStyle = VINYL_COLOR;
 
-  context.rect(radius - stemBaseRadius * 0.8, 0, 2 * stemBaseRadius * 0.8, stemBaseRadius * 2/3);
+  context.roundRect(radius - stemBaseRadius * 0.8, 0, 2 * stemBaseRadius * 0.8, stemBaseRadius * 2/3, 12);
 
   context.fill();
 
   // Indicator:
   context.beginPath();
-  context.fillStyle = VINYL_LIGHTER_COLOR;
+  context.fillStyle = '#e84393';
 
   context.moveTo(radius - stemBaseRadius / 4, stemBaseRadius / 4);
   context.lineTo(radius + stemBaseRadius / 4, stemBaseRadius / 4);
-  context.lineTo(radius, stemBaseRadius / 2 + 4);
+  context.lineTo(radius, stemBaseRadius / 2);
 
   context.fill();
 }
