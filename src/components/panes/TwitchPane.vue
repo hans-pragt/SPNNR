@@ -124,10 +124,15 @@ const emmaSays : ComputedRef<string> = computed(() => {
   position:       relative;
   .speech_bubble {
     position:           absolute;
+    padding:            0px 4px;
 
     text-align:         center;
     font-family:        'VT323';
     font-size:          24px;
+
+    overflow:           hidden;
+    white-space:        nowrap;
+    text-overflow:      ellipsis;
 
     &.nick {
       top:                0px;

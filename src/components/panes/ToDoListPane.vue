@@ -41,15 +41,16 @@
           :key      = "entry.id"
         >
 
-        <v-list-item-title>
+        <v-list-item-title
+          class   = "entry-title"
+          @click  = "isEditing = entry.id;"
+        >
 
-          <div
+          <template
             v-if    = "isEditing !== entry.id"
-            class   = "contents"
-            @click  = "isEditing = entry.id;"
           >
             {{ entry.contents }}
-          </div>
+          </template>
 
           <v-text-field
             v-else
@@ -181,7 +182,7 @@ const isEditing : Ref<string | undefined> = ref(undefined);
     flex:             1;
     overflow:         auto;
 
-    .contents {
+    .entry-title {
       cursor:           pointer;
     }
   }
