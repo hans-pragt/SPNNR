@@ -29,7 +29,7 @@
         href    = "https://www.twitch.tv/prxzmlive"
         target  = "_blank"
       >
-        <img src="/images/stream.jpg">
+        <img :src="theme.twitchScreenShotPath">
       </a>
 
       <!-- Nick -->
@@ -70,9 +70,15 @@ import {
  TEXTFIELD_BG_COLOR,
  TWITCH_PANE_COLOR
 } from '@/constants';
-import { useEntriesStore } from '@/stores';
+import { useEntriesStore, useThemesStore } from '@/stores';
 
 // #endregion Imports
+
+// #region Theme
+
+const { theme } = storeToRefs(useThemesStore());
+
+// #endregion Theme
 
 // #region Speech Bubbles
 
