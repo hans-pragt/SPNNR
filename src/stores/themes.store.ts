@@ -30,7 +30,9 @@ export const useThemesStore = defineStore(
 );
 
 import { DefaultTheme } from '@/themes/default.theme';
+import { HalloweenTheme } from '@/themes/halloween.theme';
 
 function getSelectedTheme() : Theme {
-  return DefaultTheme;
+  //return DefaultTheme;
+  return HalloweenTheme;
 }

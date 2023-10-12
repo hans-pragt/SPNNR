@@ -1,7 +1,13 @@
-import type { Theme } from "@/models";
+// #region Imports
+
+/* SPNNR */
+import type { Theme } from '@/models';
+
+// #endregion Imports
 
 const DefaultTheme : Theme = {
-  twitchScreenShotPath: '/themes/default/stream.jpg'
+  recordSpinAudioPath:      '/themes/default/record_scratch.mp3',
+  twitchScreenShotPath:     '/themes/default/stream.jpg'
 }
 
 export { DefaultTheme };

@@ -66,7 +66,7 @@ import {
   renderStem
 } from './utilities/rendering.utilities';
 import type { Entry } from '@/models';
-import { useEntriesStore, useRecordStore } from '@/stores';
+import { useEntriesStore, useRecordStore, useThemesStore } from '@/stores';
 
 // #endregion Imports
 
@@ -156,6 +156,7 @@ watch(
 
 const { angle, cover, isSpinning } = storeToRefs(useRecordStore());
 const { saveToHistory } = useEntriesStore();
+const { theme } = useThemesStore();
 
 watch(
   () => properties.current,
@@ -171,8 +172,7 @@ watch(
     angle.value = angleInRads * (180 / Math.PI);
 
     // Play audio sound:
-    console.log('test');
-    const scratch = new Audio('/sounds/record_scratch.mp3');
+    const scratch = new Audio(theme.recordSpinAudioPath);
     scratch.play();
   }
 );

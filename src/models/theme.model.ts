@@ -7,6 +7,11 @@ export interface Theme {
    */
   twitchScreenShotPath : string;
 
+  /**
+   * Path to the audio file that plays when the record spins.  
+   */
+  recordSpinAudioPath : string;
+
   // #endregion Properties
 
 }
