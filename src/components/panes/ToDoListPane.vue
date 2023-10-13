@@ -2,7 +2,7 @@
 
   <Pane
     title   = "To Do"
-    :color  = "TODO_LIST_PANE_COLOR"
+    :color  = "theme.todoPaneHeaderColor"
   >
     
     <div class="contents">
@@ -124,13 +124,16 @@ import { storeToRefs } from 'pinia';
 
 /* SPNNR */
 import Pane from '../common/Pane.vue';
-import { useEntriesStore } from '@/stores';
-import {
-  TODO_LIST_PANE_COLOR,
-  TEXTFIELD_BG_COLOR
-} from '@/constants'
+import { useEntriesStore, useThemesStore } from '@/stores';
+import { TEXTFIELD_BG_COLOR } from '@/constants'
 
 // #endregion Imports
+
+// #region Theme
+
+const { theme } = storeToRefs(useThemesStore());
+
+// #endregion Theme
 
 // #region Entries
 

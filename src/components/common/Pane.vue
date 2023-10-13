@@ -28,6 +28,12 @@
 /* Vue */
 import { computed } from 'vue';
 
+/* Pinia */
+import { storeToRefs } from 'pinia';
+
+/* Vue */
+import { useThemesStore } from '@/stores';
+
 // #endregion Imports
 
 // #region Props
@@ -43,7 +49,10 @@ const props = defineProps<PaneProps>();
 
 // #region CSS
 
+const { theme } = storeToRefs(useThemesStore());
+
 const cssVariables = computed(() => ({
+  '--background-color': theme.value.panelBackgroundColor,
   '--pane-color': props.color
 }));
 
@@ -54,7 +63,7 @@ const cssVariables = computed(() => ({
 <style scoped lang="scss">
 
 .pane {
-  background-color:   #f4ebda;
+  background-color:   var(--background-color);
 
   border:             2px solid black;
   border-radius:      12px;

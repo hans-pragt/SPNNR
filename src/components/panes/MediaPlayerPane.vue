@@ -2,7 +2,7 @@
 
   <Pane
     title     = "Media Player"
-    :color    = "MEDIA_PLAYER_PANE_COLOR"
+    :color    = "theme.mediaPaneHeaderColor"
   >
 
     <div class="container">
@@ -26,7 +26,7 @@
         <v-btn
           icon        = "mdi-skip-previous"
           elevation   = "0"
-          :color      = "MEDIA_PLAYER_PANE_COLOR"
+          :color      = "theme.mediaPaneHeaderColor"
           :disabled   = "!canSpin"
           @click      = "onSkipToPrevious();"
         >
@@ -37,7 +37,7 @@
           class       = "mx-2"
           elevation   = "0"
           icon        = "mdi-play"
-          :color      = "MEDIA_PLAYER_PANE_COLOR"
+          :color      = "theme.mediaPaneHeaderColor"
           size        = "large"
           :disabled   = "!canSpin"
           @click      = "pickWinner();"
@@ -48,7 +48,7 @@
         <v-btn
           icon        = "mdi-skip-next"
           elevation   = "0"
-          :color      = "MEDIA_PLAYER_PANE_COLOR"
+          :color      = "theme.mediaPaneHeaderColor"
           :disabled   = "!canSpin"
           @click      = "onSkipToNext();"
         >
@@ -89,11 +89,16 @@ import Pane from '../common/Pane.vue';
 import Record from './MediaPlayerPane/Record.vue';
 import NotificationDialog from './MediaPlayerPane/NotificationDialog.vue';
 
-import { useEntriesStore, useRecordStore } from '@/stores';
-import { MEDIA_PLAYER_PANE_COLOR } from '@/constants';
+import { useEntriesStore, useRecordStore, useThemesStore } from '@/stores';
 import { isFromInputField } from './MediaPlayerPane/utilities/hotkeys.utilities';
 
 // #endregion Imports
+
+// #region Theme
+
+const { theme } = storeToRefs(useThemesStore());
+
+// #endregion Theme
 
 // #region Hotkeys
 

@@ -2,7 +2,7 @@
 
   <Pane
     title     = "Twitch.tv"
-    :color    = "TWITCH_PANE_COLOR"
+    :color    = "theme.twitchPaneHeaderColor"
   >
 
     <!-- Address Bar -->
@@ -66,10 +66,7 @@ import { storeToRefs } from 'pinia';
 
 /* SPNNR */
 import Pane from '../common/Pane.vue';
-import {
- TEXTFIELD_BG_COLOR,
- TWITCH_PANE_COLOR
-} from '@/constants';
+import { TEXTFIELD_BG_COLOR } from '@/constants';
 import { useEntriesStore, useThemesStore } from '@/stores';
 
 // #endregion Imports
