@@ -3,6 +3,12 @@ export interface Theme {
   // #region Properties
 
   /**
+   * The background color of the application.
+   */
+  appBackgroundStartColor : string;
+  appBackgroundEndColor : string;
+
+  /**
    * The background color of the panels.
    */
   panelBackgroundColor : string;

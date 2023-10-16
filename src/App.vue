@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="appBackgroundStyle">
     <v-main>    
 
       <div class="container pa-8">
@@ -16,20 +16,33 @@
 
 // #region Imports
 
+/* Vue */
+import { computed } from 'vue';
+
+/* Pinia */
+import { storeToRefs } from 'pinia';
+
 /* SPNNR */
 import TodoListPane from './components/panes/ToDoListPane.vue';
 import TwitchPane from './components/panes/TwitchPane.vue';
 import MediaPlayerPane from './components/panes/MediaPlayerPane.vue';
+import { useThemesStore } from './stores';
 
 // #endregion Imports
+
+// #region Theme
+
+const { theme } = storeToRefs(useThemesStore());
+
+const appBackgroundStyle = computed(() => ({
+  'background': `linear-gradient(90deg, ${theme.value.appBackgroundStartColor} 0%, ${theme.value.appBackgroundEndColor} 100%)`
+}));
+
+// #endregion Theme
 
 </script>
 
 <style scoped lang="scss">
-
-.v-application {
-  background: linear-gradient(90deg, rgba(193,188,254,1) 0%, rgba(248,206,218,1) 100%);
-}
 
 .container {
   display:                grid;
