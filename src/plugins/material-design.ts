@@ -10,23 +10,17 @@ import '@mdi/font/css/materialdesignicons.css';
 
 // #endregion Imports
 
-// #region Colors
-
-// #endregion Colors
-
 const SPNNRTheme : ThemeDefinition = {
-  dark: false,
-  colors: {
-  }
+  dark: false
 }
 
 const materialDesign = createVuetify({
   theme: {
-    defaultTheme: 'DecalocatorTheme',
+    defaultTheme: 'SPNNRTheme',
     themes: {
-      DecalocatorTheme: SPNNRTheme
+      SPNNRTheme: SPNNRTheme      
     }
   }
 });
-  
+
 export default materialDesign;
