@@ -14,6 +14,11 @@ export interface Theme {
   panelBackgroundColor : string;
 
   /**
+   * The background color for the inputs.
+   */
+  inputBackgroundColor : string;
+
+  /**
    * The header color of the media player pane.
    */
   mediaPaneHeaderColor : string;

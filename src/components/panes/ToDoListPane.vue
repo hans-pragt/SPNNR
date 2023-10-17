@@ -14,7 +14,7 @@
           variant   = "outlined"
           density   = "compact"
           hide-details
-          :bg-color = "TEXTFIELD_BG_COLOR"
+          :bg-color = "theme.inputBackgroundColor"
 
           v-model        = "newEntry"
           @keydown.enter = "insertNewEntry();"
@@ -59,7 +59,7 @@
             density     = "compact"
             hide-details
             autofocus
-            :bg-color   = "TEXTFIELD_BG_COLOR"
+            :bg-color   = "theme.inputBackgroundColor"
             v-model:model-value = "entry.contents"
             @input      = "updateContents(entry.id, $event.target.value);"
             @blur       = "isEditing = undefined"
@@ -125,7 +125,6 @@ import { storeToRefs } from 'pinia';
 /* SPNNR */
 import Pane from '../common/Pane.vue';
 import { useEntriesStore, useThemesStore } from '@/stores';
-import { TEXTFIELD_BG_COLOR } from '@/constants'
 
 // #endregion Imports
 

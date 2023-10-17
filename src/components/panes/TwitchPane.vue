@@ -14,7 +14,7 @@
         hide-details
         readonly
         value     = "twitch.tv/prxzmlive"
-        :bg-color = "TEXTFIELD_BG_COLOR"
+        :bg-color = "theme.inputBackgroundColor"
       >
       </v-text-field>
 
@@ -66,7 +66,6 @@ import { storeToRefs } from 'pinia';
 
 /* SPNNR */
 import Pane from '../common/Pane.vue';
-import { TEXTFIELD_BG_COLOR } from '@/constants';
 import { useEntriesStore, useThemesStore } from '@/stores';
 
 // #endregion Imports

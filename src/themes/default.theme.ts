@@ -7,6 +7,7 @@ import type { Theme } from '@/models';
 
 const DefaultTheme : Theme = {
   appBackgroundStartColor:  '#c1bcfe',
+  inputBackgroundColor:     '#fbeac9',
   appBackgroundEndColor:    '#f8ceda',
   panelBackgroundColor:     '#f4ebda',
   mediaPaneHeaderColor:     '#fb9700',

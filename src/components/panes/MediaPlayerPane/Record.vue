@@ -105,7 +105,6 @@ window.onload = () => render();
 const { theme } = useThemesStore();
 const coverIndex = Math.floor(Math.random() * theme.coverPaths.length);
 const cover = theme.coverPaths[coverIndex];
-console.log(cover);
 
 function render() {
   renderStationaryCanvas();

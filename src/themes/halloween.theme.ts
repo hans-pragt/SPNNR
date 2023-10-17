@@ -7,6 +7,7 @@ import type { Theme } from '@/models';
 
 const HalloweenTheme : Theme = {
   appBackgroundStartColor:  '#ff6d00',
+  inputBackgroundColor:     '#A8A292',
   appBackgroundEndColor:    '#9d4edd',
   panelBackgroundColor:     '#beb7a4',
   mediaPaneHeaderColor:     '#ff7600',
