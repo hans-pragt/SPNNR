@@ -13,7 +13,13 @@ const HalloweenTheme : Theme = {
   todoPaneHeaderColor:      '#941b0c',
   twitchPaneHeaderColor:    '#7b2cbf',
   recordSpinAudioPath:      '/themes/halloween/dracula.mp3',
-  twitchScreenShotPath:     '/themes/halloween/stream.jpg'
+  twitchScreenShotPath:     '/themes/halloween/stream.jpg',
+  coverPaths:               [
+    '/themes/halloween/covers/cover_1.png',
+    '/themes/halloween/covers/cover_2.png',
+    '/themes/halloween/covers/cover_3.png',
+    '/themes/halloween/covers/cover_4.png'
+  ]
 }
 
 export { HalloweenTheme };

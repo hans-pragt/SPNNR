@@ -102,6 +102,11 @@ window.onload = () => render();
 
 // #region Rendering
 
+const { theme } = useThemesStore();
+const coverIndex = Math.floor(Math.random() * theme.coverPaths.length);
+const cover = theme.coverPaths[coverIndex];
+console.log(cover);
+
 function render() {
   renderStationaryCanvas();
   renderSpinningCanvas();
@@ -130,7 +135,7 @@ function renderSpinningCanvas() {
 
   clear(context);
   renderSlices(context, properties.radius, properties.entries.map(e => e.contents));
-  renderLabel(context, properties.radius, cover.value);
+  renderLabel(context, properties.radius, cover);
 }
 
 const stem_canvas : Ref<HTMLCanvasElement | undefined> = ref(undefined);
@@ -154,9 +159,8 @@ watch(
 
 // #region Rotation
 
-const { angle, cover, isSpinning } = storeToRefs(useRecordStore());
+const { angle, isSpinning } = storeToRefs(useRecordStore());
 const { saveToHistory } = useEntriesStore();
-const { theme } = useThemesStore();
 
 watch(
   () => properties.current,

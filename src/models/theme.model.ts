@@ -38,6 +38,11 @@ export interface Theme {
    */
   recordSpinAudioPath : string;
 
+  /**
+   * Which album cover art to pick from.
+   */
+  coverPaths : Array<string>;
+
   // #endregion Properties
 
 }
